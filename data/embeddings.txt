@@ -1,0 +1,2 @@
+An embedding is a list of numbers that represents the meaning of a piece of text. Texts with similar meaning end up close together in vector space. Sentence-transformer models such as all-MiniLM-L6-v2 produce 384-dimensional embeddings and run fast on a CPU.
+Similarity between embeddings is usually measured with cosine similarity, which compares the angle between two vectors. If vectors are normalised to length one, cosine similarity equals the dot product, which is very cheap to compute.
