@@ -1,0 +1,2 @@
+RAG systems are evaluated on two parts. Retrieval quality asks whether the right chunks were found, measured with recall at k and mean reciprocal rank. Generation quality asks whether the answer is faithful to the retrieved context and actually answers the question.
+A simple way to start is to write 20 to 50 question and answer pairs from your documents, run them through the pipeline, and check manually whether the correct source chunk appears in the top results. Common failures are bad chunking, a weak embedding model, and prompts that let the model ignore the context.

@@ -1,0 +1,2 @@
+The transformer architecture, introduced in 2017 in the paper "Attention Is All You Need", replaced recurrence with self-attention. Self-attention lets every token look at every other token in the sequence and weigh how relevant each one is. Because it processes tokens in parallel, transformers train much faster on GPUs than recurrent networks.
+Large language models are transformers trained on huge text corpora to predict the next token. Context window size limits how much text, including retrieved passages, can be given to the model in one request.

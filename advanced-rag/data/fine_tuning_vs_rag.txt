@@ -1,0 +1,9 @@
+Fine-tuning and retrieval-augmented generation solve different problems. Fine-tuning changes the weights of a model by training it further on examples, so it is best for teaching a style, a format or a skill, such as always answering in a fixed JSON structure or writing in a company's tone. RAG leaves the model unchanged and supplies knowledge at question time, so it is best when the model needs facts it was never trained on.
+
+Freshness is the main advantage of RAG. When a document changes, you update the index and the next answer reflects it. A fine-tuned model would need to be trained again, which takes time and money, and facts stored in weights are hard to inspect or remove.
+
+RAG also makes answers easier to check. Because the passages that were used are known, the system can show its sources and the reader can verify the claim. A fine-tuned model gives no such trail.
+
+Fine-tuning has its own strengths. It does not need to place extra text in the prompt, so it avoids using up the context window and can lower the latency of each request. It can also make a small model good at a narrow task.
+
+The two approaches are often combined: a model is fine-tuned to follow instructions and to use provided context faithfully, and RAG supplies the facts. A practical rule is to try prompting first, add RAG when knowledge is missing, and fine-tune only when behaviour or format still falls short.

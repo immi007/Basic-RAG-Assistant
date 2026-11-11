@@ -1,0 +1,35 @@
+{"question": "Why would you use RAG instead of relying on what the model memorised?", "source": "rag.txt", "evidence": "reduces hallucinations"}
+{"question": "What are the steps of a basic RAG pipeline?", "source": "rag.txt", "evidence": "load documents, split them into chunks"}
+{"question": "How many dimensions does the MiniLM embedding have?", "source": "embeddings.txt", "evidence": "384-dimensional"}
+{"question": "When vectors are normalised, how is cosine similarity computed cheaply?", "source": "embeddings.txt", "evidence": "equals the dot product"}
+{"question": "Which approximate nearest neighbour methods trade accuracy for speed?", "source": "vector_search.txt", "evidence": "HNSW or IVF"}
+{"question": "Name some popular vector search tools.", "source": "vector_search.txt", "evidence": "FAISS, Chroma, Qdrant and pgvector"}
+{"question": "Which paper introduced the transformer architecture?", "source": "transformers.txt", "evidence": "Attention Is All You Need"}
+{"question": "Why do transformers train faster than recurrent networks?", "source": "transformers.txt", "evidence": "processes tokens in parallel"}
+{"question": "Which metrics measure retrieval quality in a RAG system?", "source": "evaluation.txt", "evidence": "recall at k and mean reciprocal rank"}
+{"question": "How many test questions should I write to start evaluating?", "source": "evaluation.txt", "evidence": "20 to 50 question and answer pairs"}
+{"question": "Why do neighbouring chunks share some words?", "source": "chunking.txt", "evidence": "share a few words"}
+{"question": "What happens if a chunk is longer than the embedding model's input limit?", "source": "chunking.txt", "evidence": "silently truncated"}
+{"question": "How does semantic chunking decide where to start a new chunk?", "source": "chunking.txt", "evidence": "meaning of the text shifts"}
+{"question": "How does byte pair encoding build its vocabulary?", "source": "tokenization.txt", "evidence": "most frequent adjacent pair"}
+{"question": "Why is counting letters in a word hard for a language model?", "source": "tokenization.txt", "evidence": "pieces of words rather than letters"}
+{"question": "When a document changes, do I retrain the model or update something else?", "source": "fine_tuning_vs_rag.txt", "evidence": "update the index"}
+{"question": "In what order should I try prompting, RAG and fine-tuning?", "source": "fine_tuning_vs_rag.txt", "evidence": "try prompting first"}
+{"question": "What is few-shot prompting?", "source": "prompt_engineering.txt", "evidence": "worked examples"}
+{"question": "How should a system message differ from a user message?", "source": "prompt_engineering.txt", "evidence": "sets the rules for the whole conversation"}
+{"question": "What does faithfulness mean for an answer?", "source": "hallucination.txt", "evidence": "sticks to the provided context"}
+{"question": "What goes wrong if the similarity threshold is set too high or too low?", "source": "hallucination.txt", "evidence": "rejects valid questions"}
+{"question": "What is early stopping?", "source": "overfitting.txt", "evidence": "halts training when validation error starts to rise"}
+{"question": "How can fitting a scaler cause data leakage?", "source": "overfitting.txt", "evidence": "fitting a scaler on the whole dataset"}
+{"question": "Why can 99 percent accuracy be misleading?", "source": "classification_metrics.txt", "evidence": "always predicts the majority class"}
+{"question": "How is the F1 score computed from precision and recall?", "source": "classification_metrics.txt", "evidence": "harmonic mean"}
+{"question": "What does backpropagation use to compute gradients?", "source": "gradient_descent.txt", "evidence": "chain rule"}
+{"question": "What is a typical mini-batch size?", "source": "gradient_descent.txt", "evidence": "32 to 256 examples"}
+{"question": "How does the interquartile range rule detect outliers?", "source": "data_cleaning.txt", "evidence": "interquartile range"}
+{"question": "Which models need feature scaling and which do not?", "source": "data_cleaning.txt", "evidence": "decision trees do not"}
+{"question": "Who won the FIFA World Cup in 2018?", "source": null, "evidence": null}
+{"question": "What is the capital of Australia?", "source": null, "evidence": null}
+{"question": "How do I bake sourdough bread?", "source": null, "evidence": null}
+{"question": "What is the boiling point of water at the top of Mount Everest?", "source": null, "evidence": null}
+{"question": "Who is the current CEO of Tesla?", "source": null, "evidence": null}
+{"question": "What is the recipe for chicken biryani?", "source": null, "evidence": null}

@@ -1,0 +1,2 @@
+A vector database or index stores embeddings and finds the nearest neighbours of a query vector. Exact search compares the query to every vector, which is fine for thousands of chunks. For millions, approximate nearest neighbour methods such as HNSW or IVF trade a little accuracy for large speedups. Popular tools include FAISS, Chroma, Qdrant and pgvector.
+Chunking matters: chunks that are too large dilute the meaning and waste context, while chunks that are too small lose surrounding information. A common starting point is 150 to 300 words with 20 to 50 words of overlap.

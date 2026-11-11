@@ -1,0 +1,70 @@
+name: Expand advanced RAG archive
+
+on:
+  push:
+    branches:
+      - claude-refactor
+    paths:
+      - .github/workflows/expand-advanced-rag.yml
+
+permissions:
+  contents: write
+
+jobs:
+  expand-archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out claude-refactor
+        uses: actions/checkout@v4
+        with:
+          ref: claude-refactor
+
+      - name: Safely expand the reviewed archive
+        run: |
+          python - <<'PY'
+          from pathlib import Path, PurePosixPath
+          from zipfile import ZipFile
+
+          archive = Path("basic-rag-advanced-clean.zip")
+          destination = Path("advanced-rag")
+          if not archive.is_file():
+              raise SystemExit("Expected basic-rag-advanced-clean.zip was not found.")
+          if destination.exists():
+              raise SystemExit("advanced-rag already exists; refusing to overwrite files.")
+
+          written = []
+          with ZipFile(archive) as zf:
+              for info in zf.infolist():
+                  if info.is_dir():
+                      continue
+                  member = PurePosixPath(info.filename)
+                  if not member.parts or member.parts[0] != "basic-rag":
+                      continue
+                  relative = PurePosixPath(*member.parts[1:])
+                  if not relative.parts or any(part in ("", ".", "..") for part in relative.parts):
+                      raise SystemExit(f"Unsafe archive path: {info.filename}")
+                  if relative.name == ".env" or relative.suffix in {".pyc", ".pyo"}:
+                      raise SystemExit(f"Refusing to publish sensitive/generated file: {info.filename}")
+                  target = destination.joinpath(*relative.parts)
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  target.write_bytes(zf.read(info))
+                  written.append(str(target))
+
+          if not written:
+              raise SystemExit("No project files were found under basic-rag/ in the archive.")
+          print(f"Expanded {len(written)} files into advanced-rag/")
+          for path in written:
+              print(path)
+          PY
+
+      - name: Commit extracted source tree
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add advanced-rag
+          if git diff --cached --quiet; then
+            echo "No extracted files to commit."
+          else
+            git commit -m "Expand advanced modular RAG source tree"
+            git push origin HEAD:claude-refactor
+          fi
