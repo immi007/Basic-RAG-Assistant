@@ -1,0 +1,11 @@
+Chunking is the step that splits long documents into smaller passages before they are embedded and indexed. It matters because retrieval can only return whole chunks: if the answer is spread across two chunks, or buried inside a very long one, the retriever may miss it.
+
+Fixed-size chunking cuts the text every N words or tokens. It is simple and predictable, but it can cut a sentence in half. Adding overlap, so that neighbouring chunks share a few words, reduces the damage because a sentence cut at one boundary usually appears whole in the next chunk.
+
+Structure-aware chunking splits on natural boundaries such as paragraphs, headings or sentences, and only falls back to a fixed size when a section is too long. Semantic chunking goes further and starts a new chunk where the meaning of the text shifts, which can be measured by the distance between the embeddings of neighbouring sentences. These methods keep ideas together, but they cost more to compute and are harder to debug.
+
+Chunk size is a trade-off. Small chunks of around 50 to 100 words are precise, so a match is likely to contain exactly the relevant sentence, but they may lack the surrounding context the language model needs. Large chunks of 300 words or more keep more context but blur several topics into one vector, which weakens the similarity score, and they use up the context window faster when several are retrieved.
+
+Every embedding model has a maximum input length. Text beyond that limit is silently truncated, so a chunk should always fit within it. The all-MiniLM-L6-v2 model, for example, reads at most 256 tokens, and one English word is usually about one and a third tokens.
+
+The best chunk size depends on the documents and the questions, so it should be chosen by measuring retrieval quality on a set of test questions rather than by guessing.

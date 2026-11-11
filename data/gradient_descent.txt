@@ -1,0 +1,11 @@
+Training a neural network means finding weights that make a loss function small. The loss measures how far the predictions are from the correct answers. Gradient descent does this by computing the gradient of the loss with respect to each weight and moving the weights a small step in the opposite direction, the direction in which the loss falls fastest.
+
+The learning rate sets the size of that step. If it is too large, the loss can oscillate or diverge. If it is too small, training is slow and may get stuck on a plateau. Learning rate schedules reduce the rate as training progresses.
+
+Computing the gradient over the whole dataset for every step is expensive. Stochastic gradient descent updates the weights using a single example, and mini-batch gradient descent uses a small group, commonly 32 to 256 examples. Mini-batches give a good balance between noisy updates and efficient use of GPUs.
+
+Momentum keeps a running average of past gradients so that the updates keep moving in a consistent direction and smooth out noise. Adam goes further by adapting the step size for each weight using running estimates of the gradient's mean and variance, and it is a common default optimiser.
+
+Backpropagation is the algorithm that computes the gradients efficiently. It applies the chain rule layer by layer, starting from the loss and moving backwards through the network.
+
+One pass over the full training set is called an epoch. Training usually runs for many epochs while the validation loss is monitored.

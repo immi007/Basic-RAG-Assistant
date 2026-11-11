@@ -1,0 +1,9 @@
+A language model does not read characters or words directly. A tokenizer first splits text into tokens, which are small pieces of text such as whole common words, parts of words or single punctuation marks. Each token is mapped to an integer id from a fixed vocabulary, and the model works with those ids.
+
+Most modern tokenizers use subword methods such as byte pair encoding. The algorithm starts from individual characters or bytes and repeatedly merges the most frequent adjacent pair into a new vocabulary entry, until the vocabulary reaches a chosen size, often tens of thousands of entries. Frequent words become a single token, while rare words are broken into several pieces, so the tokenizer can represent any text without an unknown-word problem.
+
+Token counts matter in practice. The context window of a model is measured in tokens, not words, and so are the limits and the price of many hosted services. In English a token is roughly three quarters of a word, but code, numbers and languages with non-Latin scripts often need many more tokens for the same amount of meaning.
+
+Different models use different tokenizers, so the same sentence can produce different token counts, and ids from one model cannot be used with another. When counting how much text fits into a prompt, always use the tokenizer of the model you are calling.
+
+Tokenization also explains some odd model behaviour. Because the model sees pieces of words rather than letters, tasks such as counting the letters in a word or reversing a string can be surprisingly hard.
