@@ -1,0 +1,11 @@
+Overfitting happens when a model learns the noise and quirks of its training data instead of the underlying pattern. It scores very well on the training set but poorly on new data. Underfitting is the opposite: the model is too simple to capture the pattern and performs badly on both.
+
+The bias-variance trade-off describes this tension. A model with high bias makes strong simplifying assumptions and underfits. A model with high variance is very sensitive to the particular training sample and overfits. Adding capacity lowers bias but raises variance.
+
+To detect overfitting, data is split into a training set, a validation set and a test set. The model is fitted on the training set, choices such as hyperparameters are made on the validation set, and the test set is used once at the end to estimate real-world performance. A growing gap between training and validation error is the typical warning sign.
+
+K-fold cross-validation makes better use of small datasets. The data is divided into k parts, the model is trained k times each time holding out a different part for validation, and the scores are averaged.
+
+Remedies include collecting more data, simplifying the model, regularisation such as L2 weight decay or dropout, and early stopping, which halts training when validation error starts to rise.
+
+Data leakage is a related trap. If information from the test set influences training or preprocessing, for example by fitting a scaler on the whole dataset before splitting, the reported score is too optimistic.

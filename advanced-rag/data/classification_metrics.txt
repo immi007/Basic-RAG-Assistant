@@ -1,0 +1,11 @@
+Accuracy is the fraction of predictions that are correct. It is easy to understand but misleading when classes are imbalanced: a model that always predicts the majority class can reach 99 percent accuracy on a dataset where only one example in a hundred is positive.
+
+A confusion matrix counts true positives, false positives, true negatives and false negatives. Most other metrics are computed from these four numbers.
+
+Precision is the share of predicted positives that are truly positive: true positives divided by the sum of true positives and false positives. It answers the question of how many of the alarms were real. Recall is the share of actual positives that were found: true positives divided by the sum of true positives and false negatives. It answers how many of the real cases were caught.
+
+Precision and recall usually pull against each other. Making a classifier more cautious raises precision and lowers recall. The F1 score combines the two as their harmonic mean, which is low whenever either value is low.
+
+Which metric to favour depends on the cost of mistakes. A cancer screening test should have high recall because missing a case is costly, while a spam filter that deletes real email should favour precision.
+
+For ranked outputs, ROC AUC measures how well a model separates the classes across all thresholds. Precision-recall curves are more informative when positives are rare.

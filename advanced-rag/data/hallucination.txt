@@ -1,0 +1,9 @@
+A hallucination is an answer that sounds fluent and confident but is not supported by facts. Language models are trained to predict plausible next tokens, not to check truth, so when they lack knowledge they tend to fill the gap with something that looks right.
+
+Several things make hallucinations more likely: questions about rare or recent facts that were missing from the training data, vague questions with no clear answer, very long outputs where early mistakes compound, and prompts that assume something false.
+
+Grounding the model in retrieved documents is the most common mitigation. When the answer is present in the supplied passages the model can copy or summarise it instead of recalling it. Grounding fails if retrieval returns the wrong passages, so retrieval quality sets an upper limit on answer quality.
+
+A further safeguard is to let the system refuse. If no retrieved passage is similar enough to the question, a RAG application can reply that it found nothing relevant, without calling the model at all. A similarity threshold is a simple way to implement this, but it needs tuning on real questions because a value that is too high rejects valid questions and one that is too low lets irrelevant text through.
+
+Other measures include asking for citations, setting the temperature near zero, and checking the answer against the sources with a second pass. Faithfulness is the term for how well an answer sticks to the provided context, and it can be measured separately from whether the answer is correct in the real world.

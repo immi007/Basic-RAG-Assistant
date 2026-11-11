@@ -1,0 +1,11 @@
+A prompt is the full text given to a language model, and small changes to it can change the answer a lot. Clear instructions work better than vague ones: state the task, the audience, the format of the answer and any limits on length.
+
+A system message sets the rules for the whole conversation, such as the role of the assistant and what it must never do. The user message carries the actual question. Keeping stable rules in the system message and variable content in the user message makes prompts easier to maintain and test.
+
+Few-shot prompting adds a handful of worked examples to the prompt. The model imitates the pattern, which is often the quickest way to get a consistent output format. Examples should cover the real variety of inputs, because the model also copies their flaws.
+
+Temperature controls randomness when the model picks the next token. A temperature near zero makes the output almost deterministic, which suits factual question answering and extraction. Higher values give more varied text and suit brainstorming or creative writing.
+
+In a retrieval system the prompt should tell the model to use only the supplied passages and to say that it does not know when they do not contain the answer. Because retrieved text can contain instructions written by someone else, the prompt should also say that passages are data and not commands. This reduces, but does not remove, the risk of prompt injection.
+
+Asking the model to cite which passage supports each claim, for example with numbers in square brackets, makes answers easier to verify.

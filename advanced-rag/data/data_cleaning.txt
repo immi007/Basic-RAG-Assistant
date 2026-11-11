@@ -1,0 +1,11 @@
+Real datasets are messy, and models are only as good as the data they see. Data cleaning is the step that fixes or removes problems before modelling.
+
+Missing values can be handled by dropping rows or columns, or by imputation, which fills in a replacement such as the median for numeric columns or the most frequent category for categorical ones. Dropping is safe only when little data is lost and the values are missing at random. It can also help to add an indicator column that records which values were missing.
+
+Outliers are extreme values that may be errors or genuine rare cases. Inspect them before removing them. The interquartile range rule flags points more than one and a half times the range between the first and third quartiles beyond those quartiles.
+
+Many algorithms are sensitive to the scale of features. Standardisation rescales a feature to zero mean and unit variance, and min-max scaling maps it to a fixed range such as zero to one. Distance-based methods like k-nearest neighbours and models trained by gradient descent usually need scaling, while decision trees do not.
+
+Categorical features must be converted to numbers. One-hot encoding creates a binary column for each category and works well when there are few categories. High-cardinality features may need target or frequency encoding instead.
+
+Always fit imputers and scalers on the training data only, then apply them to the validation and test data, to avoid leaking information.
